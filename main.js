@@ -3,6 +3,8 @@ const imgAprovado = '<img src"./imagens/aprovado.png" alt = "emoji celebrando"/>
 const imgReprovado = '<img src"./imagens/reprovado.png" alt = "emoji decepicionado"/>';
 const atiVidades = [];
 const notas = [];
+const spanAprovador = '<span class= "resultado aprovado">Aprovado</span>';
+const spanReprovador = '<span class= "resultado Reprovado">Reprovado</span>';
 
 let linhas = '';
 
@@ -19,7 +21,7 @@ const inputNomeAtividade = document.getElementById('nome-atividade');
 const inputNotaAtividade = document.getElementById('nota-atividade');  
 
 atiVidades.push(inputNomeAtividade.value);
-notas.push(inputNotaAtividade.value);
+notas.push (parseFloat(inputNotaAtividade.value));
 
 let linha = '<tr>';
 linha += `<td> ${inputNomeAtividade.value}</td>`;
@@ -36,12 +38,22 @@ linha += `</tr>`;
     }
 
     function atualizaTabela () {
-        const corpoTabela = document.querySelector('tbody');
-        corpoTabela.innerHTML = linha;
-    }
-
+    const corpoTabela = document.querySelector('tbody');
+    corpoTabela.innerHTML = linhas;
+        }
     function atualizaMediaFinal () {
-console.log(atiVidades);
-console.log(notas);
-        
-    }
+    const mediaFinal = calculaMediafinal ();
+
+    document.getElementById('media-final-valor'). innerHTML = mediaFinal;
+    document.getElementById('media-final-resultado'). innerHTML = mediaFinal >=7 ? spanAprovador: spanReprovador; 
+        }
+
+
+
+    function calculaMediafinal () {
+    let somaDasNotas = 0;
+for (let i = 0; 1 < notas.length; i++) {
+    somaDasNotas += notas [i];
+}
+    return somaDasNotas / notas.length;
+}
