@@ -1,15 +1,15 @@
 const form = document.getElementById('form-atividade');
-const imgAprovado = '<img src"./imagens/aprovado.png" alt = "emoji celebrando"/>';
-const imgReprovado = '<img src"./imagens/reprovado.png" alt = "emoji decepicionado"/>';
-const atiVidades = [];
+const imgAprovado = '<img src="./imagens/aprovado.png" alt = "emoji celebrando"/>';
+const imgReprovado = '<img src="./imagens/reprovado.png" alt = "emoji decepicionado"/>';
+const atividades = [];
 const notas = [];
-const spanAprovador = '<span class= "resultado aprovado">Aprovado</span>';
-const spanReprovador = '<span class= "resultado Reprovado">Reprovado</span>';
+const spanAprovado = '<span class= "resultado aprovado">Aprovado</span>';
+const spanReprovado = '<span class= "resultado Reprovado">Reprovado</span>';
 
 let linhas = '';
 
 form.addEventListener('submit', function(e) {
-e.preventDefaul();
+e.preventDefault();
 
 adicionaLinha();
 atualizaTabela();
@@ -29,7 +29,7 @@ linha += `<td> ${inputNotaAtividade.value}</td>`;
 linha += `<td> ${inputNotaAtividade.value >=7 ? imgAprovado : imgReprovado} </td>`;
 linha += `</tr>`;
     
-    linhas += linhas;
+    linhas += linha;
     
 
     
@@ -42,7 +42,7 @@ linha += `</tr>`;
     corpoTabela.innerHTML = linhas;
         }
     function atualizaMediaFinal () {
-    const mediaFinal = calculaMediafinal ();
+    const mediaFinal = calculaMediaFinal ();
 
     document.getElementById('media-final-valor'). innerHTML = mediaFinal;
     document.getElementById('media-final-resultado'). innerHTML = mediaFinal >=7 ? spanAprovador: spanReprovador; 
@@ -50,9 +50,9 @@ linha += `</tr>`;
 
 
 
-    function calculaMediafinal () {
+    function calculaMediaFinal () {
     let somaDasNotas = 0;
-for (let i = 0; 1 < notas.length; i++) {
+for (let i = 0; i < notas.length; i++) {
     somaDasNotas += notas [i];
 }
     return somaDasNotas / notas.length;
